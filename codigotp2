@@ -1,0 +1,109 @@
+-- Biblioteca
+/*
+    id (PK) (autonumerico)
+    titulo
+    idioma (FK)
+    paginas null
+    autor
+    editorial null (fk)
+*/
+
+-- Idioma
+/*
+    nombre (pk)
+*/
+
+-- editorial
+/*
+  nombre (pk)
+*/
+
+--create database biblioteca,
+--use biblioteca,
+/*
+create table idiomas(
+    id smallint not null primary key identity(1,1),
+    titulo varchar(50) not null,
+)
+
+create table Generos(
+    id smallint not null primary key identity(1,1),
+    nombre varchar(30) not null,
+)
+
+create table autores(
+    id smallint not null primary key identity(1,1),
+    nombre varchar(50) not null,
+	pais smallint not null foreign key references paises(id),
+)
+
+create table editoriales(
+    id smallint not null primary key identity(1,1),
+    nombre varchar(50) not null,
+)
+
+
+create table libros(
+id int not null primary key identity (1,1),
+idioma smallint null foreign key references idiomas(id),
+editorial smallint foreign key references editoriales(id),
+titulo varchar(50) not null unique,
+
+)
+
+
+
+
+create table libroxautor(
+autor smallint not null foreign key references autores(id),
+libro int  not null foreign key references libros(id),
+)
+
+create table paises(
+id smallint not null primary key identity (1,1),
+pais varchar (50) not null unique,
+)
+
+create table generoxlibro(
+genero smallint not null foreign key references generos(id),
+libro int not null foreign key references libros(id),
+
+)
+
+
+create table genero_usuario(
+id tinyint primary key identity (1,1),
+genero varchar(15) not null
+)
+
+create table usuarios (
+id int not null primary key identity (1,1),
+nombre varchar(50) not null,
+apellido varchar(50) not null,
+email varchar(50) not null unique,
+pais smallint not null references paises(id),
+nacimiento date null,
+genero tinyint null foreign key references genero_usuario(id)
+)
+
+create table bibliotecas(
+
+id int not null primary key identity (1,1),
+nombre varchar(100) not null,
+usuario int not null foreign key references usuarios(id),
+fecha date not null 
+)
+
+create table libroxbiblioteca(
+
+biblioteca int not null foreign key references bibliotecas(id),
+libro int not null foreign key references libros(id),
+valorlibro tinyint null,
+fechacompra date null,
+fechainicio date null,
+fechafin date null,
+valorconver tinyint not null,
+precio smallmoney null,
+
+)
+*/
